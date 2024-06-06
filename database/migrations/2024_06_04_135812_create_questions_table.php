@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->integer('allowed_answers')->default(1);
+            $table->softDeletes();
             $table->timestamps();
         });
     }

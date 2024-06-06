@@ -1,11 +1,13 @@
 <?php
 
-namespace {{ namespace }};
+namespace App\Http\Requests\User\Answers;
 
 use App\Helpers\Traits\General\HasFailedValidationRequest;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
-class {{ class }} extends FormRequest
+
+class StoreAnswerRequest extends FormRequest
 {
 
     use HasFailedValidationRequest;
@@ -25,7 +27,12 @@ class {{ class }} extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'options' => ['required', 'array', 'min:1', 'max:' . (request()->question->allowed_answers)],
+            'options.*' => [
+                'integer',
+                Rule::exists('options', 'id')
+                    ->where('question_id', request()->question->id)
+            ],
         ];
     }
 }
