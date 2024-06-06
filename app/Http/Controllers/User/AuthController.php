@@ -16,13 +16,13 @@ class AuthController extends Controller
     public function login(LoginRequest $request): JsonResponse
     {
         $data = $request->validated();
-        $admin = User::query()->where('email', $data['email'])
+        $admin = User::query()->where('job_number', $data['job_number'])
             ->where('password', $data['password'])
             ->first();
         if (!$admin ) {
             throw new LogicalException(__('auth.failed'), 401);
         }
-        $admin->token = $admin->createToken('Admin Token')->plainTextToken;
+        $admin->token = $admin->createToken('Token')->plainTextToken;
         return sendSuccessResponse(__('auth.success_login'), LoginResource::make($admin));
     }
 }

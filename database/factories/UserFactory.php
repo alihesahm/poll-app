@@ -26,10 +26,8 @@ class UserFactory extends Factory
     {
         return [
             'name' => fake()->name(),
-            'email' => fake()->unique()->safeEmail(),
-            'email_verified_at' => now(),
+            'job_number' => fake()->unique()->numberBetween(1000, 9999),
             'password' => 'password',
-            'remember_token' => Str::random(10),
             'type' => UserTypeEnum::USER
         ];
     }

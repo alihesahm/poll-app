@@ -15,12 +15,12 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         User::factory()->create([
-            'email' => 'admin@admin.com',
+            'job_number' => '0000',
             'type' => UserTypeEnum::ADMIN
         ]);
 
         User::factory()->create([
-            'email' => 'user@user.com',
+            'job_number' => '1111',
             'type' => UserTypeEnum::USER
         ]);
 
