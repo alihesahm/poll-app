@@ -17,6 +17,7 @@ class QuestionWithOptionsResource extends JsonResource
         return [
             'id' => $this->id,
             'title' => $this->title,
+            'answers_count' => $this->answers_count,
             'date' => $this->created_at->format('Y-m-d H:i:s'),
             'options' => $this->options->map(fn($option) => [
                 'id' => $option->id,
